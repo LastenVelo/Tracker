@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static double last_acc = 0.0;
 
     // further global constant
-    public static String mTelNummer = "";
+    public static String mTelNummer = "LastenVeloTest";
     public static boolean moving= false;
 
     // define location Listener
@@ -62,11 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 moving=true;
                 sent_data_to_lvf( longitude, latitude, accuracy, speed, false );
             }
-            else{
-                if (moving==true){
-                    moving=false;
-                    sent_data_to_lvf( longitude, latitude, accuracy, speed, true );
-                }
+            else if (moving) {
+                moving = false;
+                sent_data_to_lvf( longitude, latitude, accuracy, speed, true );
             }
 
 
@@ -175,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions( this, new String[]{Manifest.permission.READ_PHONE_NUMBERS}, 23 );
         } else {
             assert mTelMan != null;
-            mTelNummer = mTelMan.getLine1Number();
+            //mTelNummer = mTelMan.getLine1Number();
         }
 
         Thread thread = new Thread( new Runnable() {
